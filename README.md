@@ -153,34 +153,6 @@ Serão implementados testes para validar:
 
 ---
 
-# 🚀 Como Executar
-
-Clone o repositório:
-
-```bash
-git clone https://github.com/seu-usuario/damas-dos-reinos.git
-```
-
-Acesse a pasta:
-
-```bash
-cd damas-dos-reinos
-```
-
-Compile:
-
-```bash
-javac src/Main.java
-```
-
-Execute:
-
-```bash
-java Main
-```
-
----
-
 # 👥 Equipe
 
 * Monique da Silva
