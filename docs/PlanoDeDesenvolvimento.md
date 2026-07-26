@@ -6,6 +6,7 @@
 - [x] Criar README
 - [x] Criar estrutura de pacotes
 - [x] Criar classes principais
+- [x] Criar arquivos de testes automatizados 
 
 Responsável:
 Júlio e Monique
@@ -20,6 +21,18 @@ Júlio e Monique
 
 Responsável:
 Monique
+
+enums:
+    - [ ] CorReino.java
+    - [ ] TipoPeca.java
+
+pecas:
+    - [ ] Peca.java
+    - [ ] Soldado.java
+    - [ ] SoldadoReal.java
+    - [ ] Cavaleiro.java
+    - [ ] Mago.java
+
 
 ---
 
