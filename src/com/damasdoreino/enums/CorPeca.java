@@ -1,5 +1,6 @@
 package com.damasdoreino.enums;
 
-public class CorPeca {
-    
+public enum CorPeca {
+    BRANCO,
+    PRETO
 }

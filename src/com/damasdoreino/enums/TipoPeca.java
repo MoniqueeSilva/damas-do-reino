@@ -1,5 +1,8 @@
 package com.damasdoreino.enums;
 
-public class TipoPeca {
-    
+public enum TipoPeca {
+    SOLDADO,
+    SOLDADO_REAL,
+    CAVALEIRO,
+    MAGO
 }
