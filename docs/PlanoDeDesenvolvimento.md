@@ -13,36 +13,31 @@ Júlio e Monique
 
 ---
 
-## Etapa 2 - Tabuleiro
+## Etapa 2 - Enuns
 
+- [x] CorReino.java
+- [x] TipoPeca.java
+
+Responsável:
+Monique
+
+---
+
+## Etapa 3 - Hierarquia das peças
+
+- [x] Classe abstrata Peca
+- [x] Soldado
+- [ ] SoldadoReal
+- [x] Cavaleiro
+- [x] Mago
+
+Responsável:
+Júlio  
+
+## Etapa 4 - Tabuleiro
 - [ ] Casa
 - [ ] Tabuleiro
 - [ ] Impressão no console
 
 Responsável:
 Monique
-
-enums:
-    - [ ] CorReino.java
-    - [ ] TipoPeca.java
-
-pecas:
-    - [ ] Peca.java
-    - [ ] Soldado.java
-    - [ ] SoldadoReal.java
-    - [ ] Cavaleiro.java
-    - [ ] Mago.java
-
-
----
-
-## Etapa 3 - Hierarquia das peças
-
-- [ ] Classe abstrata Peca
-- [ ] Soldado
-- [ ] SoldadoReal
-- [ ] Cavaleiro
-- [ ] Mago
-
-Responsável:
-Júlio  
