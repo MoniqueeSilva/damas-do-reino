@@ -5,3 +5,8 @@ Criado o repositório.
 # 25/07
 
 Criada estrutura inicial.
+
+
+# 25/07
+
+Criada os enums.

@@ -2,28 +2,31 @@
 
 ## Etapa 1 - Estrutura
 
+Responsável
+Júlio e Monique:
+
 - [x] Criar repositório
 - [x] Criar README
 - [x] Criar estrutura de pacotes
 - [x] Criar classes principais
 - [x] Criar arquivos de testes automatizados 
 
-Responsável:
-Júlio e Monique
-
 ---
 
 ## Etapa 2 - Enuns
 
+Responsável
+Monique:
+
 - [x] CorReino.java
 - [x] TipoPeca.java
-
-Responsável:
-Monique
 
 ---
 
 ## Etapa 3 - Hierarquia das peças
+
+Responsável
+Júlio:
 
 - [x] Classe abstrata Peca
 - [x] Soldado
@@ -31,13 +34,13 @@ Monique
 - [x] Cavaleiro
 - [x] Mago
 
-Responsável:
-Júlio  
-
+---
 ## Etapa 4 - Tabuleiro
-- [ ] Casa
+
+Responsável
+Monique:
+
+- [x] Casa
 - [ ] Tabuleiro
 - [ ] Impressão no console
 
-Responsável:
-Monique
