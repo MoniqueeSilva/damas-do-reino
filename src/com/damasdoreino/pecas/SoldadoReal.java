@@ -2,6 +2,7 @@ package com.damasdoreino.pecas;
 
 import com.damasdoreino.enums.CorPeca;
 import com.damasdoreino.enums.TipoPeca;
+import com.damasdoreino.jogo.Tabuleiro;
 
 public class SoldadoReal extends Peca {
 
@@ -10,6 +11,7 @@ public class SoldadoReal extends Peca {
     }
 
     public boolean movimentoValido(
+            Tabuleiro tabuleiro,
             int origemLinha,
             int origemColuna,
             int destinoLinha,
