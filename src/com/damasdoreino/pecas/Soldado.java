@@ -9,22 +9,26 @@ public class Soldado extends Peca {
         super(cor, TipoPeca.SOLDADO);
     }
 
-    @Override
-    public boolean movimentoValido(int origemX, int origemY,
-                                   int destinoX, int destinoY) {
+    public boolean movimentoValido(
+            int origemLinha,
+            int origemColuna,
+            int destinoLinha,
+            int destinoColuna) {
 
-        int deltaX = destinoX - origemX;
-        int deltaY = destinoY - origemY;
+        int deltaLinha = destinoLinha - origemLinha;
+        int deltaColuna = Math.abs(destinoColuna - origemColuna);
 
-        if (Math.abs(deltaX) != 1) {
+        //Soldado anda apenas uma casa na diagonal;
+        if (deltaColuna != 1) {
             return false;
         }
 
+        //Cada cor possui um sentido de avanço;
         if (getCor() == CorPeca.BRANCO) {
-            return deltaY == 1;
+            return deltaLinha == -1;
         }
 
-        return deltaY == -1;
+        return deltaLinha == 1;
     }
 
 }
