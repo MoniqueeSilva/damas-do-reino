@@ -3,7 +3,7 @@ import com.damasdoreino.pecas.Peca;
 
 public class Tabuleiro {
     private final int tamanho;
-    private Casa[][] casas;
+    private final Casa[][] casas;
 
     public Tabuleiro() {
         this.tamanho = 8;
@@ -19,7 +19,7 @@ public class Tabuleiro {
         }
     }
 
-    private boolean posicaoValida(int linha, int coluna){
+    public boolean posicaoValida(int linha, int coluna){
         return linha >= 0 && linha < tamanho &&
                 coluna >= 0 && coluna < tamanho;
     }
