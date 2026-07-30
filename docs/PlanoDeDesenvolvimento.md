@@ -44,3 +44,23 @@ Monique:
 - [x] Tabuleiro
 - [ ] Impressão no console
 
+## Etapa 5 - Jogador
+
+Responsável
+Júlio:
+
+- [ ] Jogador
+
+## Etapa 6 - Jogo
+
+Responsável
+Monique:
+
+- [ ] Jogo
+
+## Etapa final - Criar Testes
+
+Responsável
+Júlio:
+
+- [ ] Testes
