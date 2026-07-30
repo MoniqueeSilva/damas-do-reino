@@ -41,6 +41,6 @@ Responsável
 Monique:
 
 - [x] Casa
-- [ ] Tabuleiro
+- [x] Tabuleiro
 - [ ] Impressão no console
 
