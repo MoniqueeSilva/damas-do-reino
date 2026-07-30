@@ -6,7 +6,6 @@ Criado o repositório.
 
 Criada estrutura inicial.
 
-
 ## 25/07
 
 Criada os enums.
@@ -14,3 +13,11 @@ Criada os enums.
 ## 29/07
 
 Criado tabuleiro e casa;
+
+## 30/07
+
+Ajuste nas classes peças.
+
+## 30/07
+
+Criado a classe Jogador.
