@@ -74,4 +74,28 @@ public class Tabuleiro {
         origem.removerPeca();
         return true;
     }
+
+    public boolean casaEstaVazia(int linha, int coluna){
+        Casa casa = getCasa(linha, coluna);
+        if(casa == null){
+            return false;
+        }
+        return casa.estaVazia();
+    }
+
+    public Peca getPeca(int linha, int coluna){
+        Casa casa = getCasa(linha, coluna);
+        if(casa == null){
+            return null;
+        }
+        return casa.getPeca();
+    }
+
+    public void limparTabuleiro(){
+        for (int linha = 0; linha < tamanho; linha++) {
+            for (int coluna = 0; coluna < tamanho; coluna++) {
+                casas[linha][coluna].removerPeca();
+            }
+        }
+    }
 }
