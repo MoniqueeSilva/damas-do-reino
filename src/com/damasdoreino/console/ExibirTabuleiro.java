@@ -51,13 +51,13 @@ public class ExibirTabuleiro {
             return peca.getCor() == CorPeca.BRANCO ? "⚪" : "⚫";
 
         case SOLDADO_REAL:
-            return peca.getCor() == CorPeca.BRANCO ? "🤴" : "👸";
+            return peca.getCor() == CorPeca.BRANCO ? "♔ " : "♚";
 
         case CAVALEIRO:
             return peca.getCor() == CorPeca.BRANCO ? "🐴" : "🐎";
 
         case MAGO:
-            return peca.getCor() == CorPeca.BRANCO ? "🧙" : "🧙‍♂️";
+            return peca.getCor() == CorPeca.BRANCO ? "🔮" : "✨";
 
         default:
             return "❓";
