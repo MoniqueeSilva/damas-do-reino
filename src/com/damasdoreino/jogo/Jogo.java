@@ -106,7 +106,7 @@ public class Jogo {
             System.out.println("Você só pode mover peças do seu reino.");
             return false;
         }
-        if (!peca.movimentoValido(origemLinha, origemColuna, destinoLinha, destinoColuna)) {
+        if (!peca.movimentoValido(tabuleiro, origemLinha, origemColuna, destinoLinha, destinoColuna)) {
             System.out.println("Movimento inválido para essa peça.");
             return false;
         }
@@ -121,7 +121,7 @@ public class Jogo {
         return true;
     }
 
-    /*Alterna o turn0.*/
+    /*Alterna o turno.*/
     private void trocarTurno() {
         if (turnoAtual == CorPeca.BRANCO) {
             turnoAtual = CorPeca.PRETO;
@@ -142,7 +142,10 @@ public class Jogo {
      */
     private void promoverSoldado(int linha, int coluna) {
         Peca peca = tabuleiro.getPeca(linha, coluna);
-        if (!(peca.getTipo() != TipoPeca.SOLDADO)) {
+        if (peca == null) {
+            return;
+        }
+        if (peca.getTipo() != TipoPeca.SOLDADO){
             return;
         }
         if (peca.getCor() == CorPeca.BRANCO && linha == 0) {
