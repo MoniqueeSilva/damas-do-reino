@@ -5,8 +5,8 @@ import com.damasdoreino.enums.TipoPeca;
 
 public abstract class Peca {
 
-    private CorPeca cor;
-    private TipoPeca tipo;
+    private final CorPeca cor;
+    private final TipoPeca tipo;
 
     public Peca(CorPeca cor, TipoPeca tipo) {
         this.cor = cor;
@@ -21,7 +21,11 @@ public abstract class Peca {
         return tipo;
     }
 
-    //Cada peça implementará sua própria regra de movimento.
-    public abstract boolean movimentoValido(int origemX, int origemY, int destinoX, int destinoY);
+    //Cada peça conhece sua própria regra de movimento;
+    public abstract boolean movimentoValido(
+            int origemLinha,
+            int origemColuna,
+            int destinoLinha,
+            int destinoColuna);
 
 }

@@ -9,10 +9,17 @@ public class Mago extends Peca {
         super(cor, TipoPeca.MAGO);
     }
 
-    @Override
-    public boolean movimentoValido(int origemX, int origemY, int destinoX, int destinoY) {
+    public boolean movimentoValido(
+            int origemLinha,
+            int origemColuna,
+            int destinoLinha,
+            int destinoColuna) {
 
-        return Math.abs(destinoX - origemX) == Math.abs(destinoY - origemY);
+        int deltaLinha = Math.abs(destinoLinha - origemLinha);
+        int deltaColuna = Math.abs(destinoColuna - origemColuna);
+
+        //Mago movimenta apenas na diagonal;
+        return deltaLinha == deltaColuna;
     }
 
 }

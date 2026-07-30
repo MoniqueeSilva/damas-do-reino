@@ -9,15 +9,18 @@ public class Cavaleiro extends Peca {
         super(cor, TipoPeca.CAVALEIRO);
     }
 
-    @Override
-    public boolean movimentoValido(int origemX, int origemY,
-                                   int destinoX, int destinoY) {
+    public boolean movimentoValido(
+            int origemLinha,
+            int origemColuna,
+            int destinoLinha,
+            int destinoColuna) {
 
-        int deltaX = Math.abs(destinoX - origemX);
-        int deltaY = Math.abs(destinoY - origemY);
+        int deltaLinha = Math.abs(destinoLinha - origemLinha);
+        int deltaColuna = Math.abs(destinoColuna - origemColuna);
 
-        return (deltaX == 2 && deltaY == 1)
-                || (deltaX == 1 && deltaY == 2);
+        //Cavaleiro move em L;
+        return (deltaLinha == 2 && deltaColuna == 1)
+                || (deltaLinha == 1 && deltaColuna == 2);
     }
 
 }
