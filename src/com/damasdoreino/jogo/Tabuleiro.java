@@ -1,4 +1,5 @@
 package com.damasdoreino.jogo;
+import com.damasdoreino.pecas.Peca;
 
 public class Tabuleiro {
     private final int tamanho;
@@ -28,5 +29,49 @@ public class Tabuleiro {
             return null;
         }
         return casas[linha][coluna];
+    }
+
+    public boolean colocarPeca(Peca peca, int linha, int coluna){
+        if(!posicaoValida(linha, coluna)){
+            return false;
+        }
+        Casa casa = getCasa(linha, coluna);
+        if(!casa.estaVazia()){
+            return false;
+        }
+        casa.colocarPeca(peca);
+        return true;
+    }
+
+    public boolean removerPeca(int linha, int coluna) {
+        if (!posicaoValida(linha, coluna)) {
+            return false;
+        }
+        Casa casa = getCasa(linha, coluna);
+            if (casa.estaVazia()) {
+                return false;
+            }
+            casa.removerPeca();
+
+            return true;
+    }
+
+    public boolean moverPeca(int origemLinha, int origemColuna, int destinoLinha, int destinoColuna) {
+        if (!posicaoValida(origemLinha, origemColuna) || !posicaoValida(destinoLinha, destinoColuna)) {
+            return false;
+        }
+        Casa origem = getCasa(origemLinha, origemColuna);
+        Casa destino = getCasa(destinoLinha, destinoColuna);
+        if (origem.estaVazia()) {
+            return false;
+        }
+        if (!destino.estaVazia()) {
+            return false;
+        }
+
+        Peca peca = origem.getPeca();
+        destino.colocarPeca(peca);
+        origem.removerPeca();
+        return true;
     }
 }
