@@ -4,9 +4,9 @@ Este documento registra as principais decisões arquiteturais tomadas durante o 
 
 ---
 
-# Decisão 01
+## Decisão 01
 
-## Utilização da classe abstrata `Peca`
+### Utilização da classe abstrata `Peca`
 
 **Justificativa**
 
@@ -24,9 +24,9 @@ A classe abstrata concentra o comportamento compartilhado e delega a validação
 
 ---
 
-# Decisão 02
+## Decisão 02
 
-## Especialização das peças
+### Especialização das peças
 
 **Justificativa**
 
@@ -42,9 +42,9 @@ Assim, novas peças podem ser adicionadas sem modificar as existentes.
 
 ---
 
-# Decisão 03
+## Decisão 03
 
-## Utilização de Enum para Cor e Tipo da Peça
+### Utilização de Enum para Cor e Tipo da Peça
 
 **Justificativa**
 
@@ -58,9 +58,9 @@ As informações de cor e tipo passaram a ser representadas por enums, eliminand
 
 ---
 
-# Decisão 04
+## Decisão 04
 
-## Classe `Casa` como responsável pela ocupação
+### Classe `Casa` como responsável pela ocupação
 
 **Justificativa**
 
@@ -73,9 +73,9 @@ Cada casa conhece apenas sua posição e qual peça está ocupando aquele espaç
 
 ---
 
-# Decisão 05
+## Decisão 05
 
-## Classe `Tabuleiro` responsável pela estrutura do jogo
+### Classe `Tabuleiro` responsável pela estrutura do jogo
 
 **Justificativa**
 
@@ -89,9 +89,9 @@ O tabuleiro concentra apenas operações relacionadas às casas e aos limites da
 
 ---
 
-# Decisão 06
+## Decisão 06
 
-## Classe `Jogador` representa apenas o participante da partida
+### Classe `Jogador` representa apenas o participante da partida
 
 **Justificativa**
 
@@ -107,9 +107,9 @@ A lógica de movimentação permanece nas peças e no jogo, evitando acoplamento
 
 ---
 
-# Decisão 07
+## Decisão 07
 
-## Desenvolvimento incremental utilizando GitFlow
+### Desenvolvimento incremental utilizando GitFlow
 
 **Justificativa**
 
