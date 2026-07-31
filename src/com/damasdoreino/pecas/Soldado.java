@@ -16,12 +16,12 @@ public class Soldado extends Peca {
         super(cor, tipo);
     }
 
-    // Método que define a direção válida. No Soldado, é apenas para frente
+    // Método que define apenas a direção válida (para frente)
     protected boolean isDirecaoValida(int deltaLinha) {
         if (getCor() == CorPeca.BRANCO) {
-            return deltaLinha == -1;
+            return deltaLinha < 0; // Branco precisa de um delta negativo (para cima)
         }
-        return deltaLinha == 1;
+        return deltaLinha > 0;     // Preto precisa de um delta positivo (para baixo)
     }
 
     @Override

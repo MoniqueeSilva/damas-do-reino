@@ -183,6 +183,26 @@ public class Jogo {
         return false;
     }
 
+    private boolean temMovimentosValidos(CorPeca cor) {
+        for (int linha = 0; linha < 8; linha++) {
+            for (int coluna = 0; coluna < 8; coluna++) {
+                Peca peca = tabuleiro.getPeca(linha, coluna);
+                if (peca != null && peca.getCor() == cor) {
+                    // Varre o tabuleiro procurando um movimento ou captura válida
+                    for (int destinoLinha = 0; destinoLinha < 8; destinoLinha++) {
+                        for (int destinoColuna = 0; destinoColuna < 8; destinoColuna++) {
+                            if (peca.movimentoValido(tabuleiro, linha, coluna, destinoLinha, destinoColuna) ||
+                                peca.capturaValida(tabuleiro, linha, coluna, destinoLinha, destinoColuna)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     /*Verifica se o jogo terminou.*/
     public boolean jogoTerminou() {
         if (!possuiPecas(CorPeca.BRANCO)) {
@@ -193,11 +213,18 @@ public class Jogo {
             System.out.println("\n🏆 Reino Branco venceu!");
             return true;
         }
+        // Verifica afogamento do jogador atual
+        if (!temMovimentosValidos(turnoAtual)) {
+            System.out.println("\n🚫 " + turnoAtual + " não tem jogadas válidas! O adversário venceu!");
+            return true;
+        }
         return false;
     }
+
     public Tabuleiro getTabuleiro() {
         return tabuleiro;
     }
+
     public CorPeca getTurnoAtual() {
         return turnoAtual;
     }
