@@ -30,4 +30,19 @@ public abstract class Peca {
             int destinoLinha,
             int destinoColuna);
 
+     // Cada peça conhece sua regra de captura
+    public abstract boolean capturaValida(
+        Tabuleiro tabuleiro,
+        int origemLinha,
+        int origemColuna,
+        int destinoLinha,
+        int destinoColuna);
+
+    // Cada peça sabe executar sua própria captura (Polimorfismo)
+    public abstract void executarCaptura(
+        Tabuleiro tabuleiro,
+        int origemLinha,
+        int origemColuna,
+        int destinoLinha,
+        int destinoColuna);
 }

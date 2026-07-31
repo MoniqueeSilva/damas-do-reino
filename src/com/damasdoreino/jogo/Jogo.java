@@ -95,7 +95,7 @@ public class Jogo {
         }
     }
 
-    /*Move uma peça.*/
+    /*Move ou realiza captura de uma peça.*/
     public boolean mover(int origemLinha, int origemColuna, int destinoLinha, int destinoColuna) {
         Peca peca = selecionarPeca(origemLinha, origemColuna);
         if (peca == null) {
@@ -106,6 +106,16 @@ public class Jogo {
             System.out.println("Você só pode mover peças do seu reino.");
             return false;
         }
+        
+        // 1. Prioridade: verifica se é uma CAPTURA válida
+        if (peca.capturaValida(tabuleiro, origemLinha, origemColuna, destinoLinha, destinoColuna)) {
+            peca.executarCaptura(tabuleiro, origemLinha, origemColuna, destinoLinha, destinoColuna);
+            promoverSoldado(destinoLinha, destinoColuna);
+            trocarTurno();
+            return true;
+        }
+
+        // 2. Se não for captura, verifica MOVIMENTO normal
         if (!peca.movimentoValido(tabuleiro, origemLinha, origemColuna, destinoLinha, destinoColuna)) {
             System.out.println("Movimento inválido para essa peça.");
             return false;
@@ -120,6 +130,7 @@ public class Jogo {
         trocarTurno();
         return true;
     }
+
 
     /*Alterna o turno.*/
     private void trocarTurno() {
