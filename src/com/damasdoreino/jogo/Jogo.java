@@ -99,7 +99,7 @@ public class Jogo {
         }
     }
 
-    /*Move ou realiza captura de uma peça. Aplica GRASP Polymorphism ao delegar a validação para a própria peça. */
+    /*Move ou realiza captura de uma peça. Aplica GRASP e polimorfismo ao delegar a validação para a própria peça. */
     public boolean mover(int origemLinha, int origemColuna, int destinoLinha, int destinoColuna) {
         Peca peca = selecionarPeca(origemLinha, origemColuna);
         if (peca == null) {
