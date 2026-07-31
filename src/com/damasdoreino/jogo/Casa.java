@@ -4,6 +4,7 @@ import com.damasdoreino.pecas.Peca;
 /*
  * Representa uma célula do tabuleiro (Grid).
  * GRASP: Pure Fabrication (abstração de baixo nível) e Indireção.
+ * SOLID: Responsabilidade única
  */
 public class Casa {
     private final int linha;
