@@ -11,6 +11,11 @@ import com.damasdoreino.pecas.Peca;
 import com.damasdoreino.pecas.Soldado;
 import com.damasdoreino.pecas.SoldadoReal;
 
+/*
+ * Orquestra a partida e a interação entre Tabuleiro e Peças.
+ * GRASP: Controller (controla o fluxo do sistema) e Creator (cria Tabuleiro e peças).
+ * SOLID: DIP (inversão de dependência) - Depende da abstração Peca, não das implementações concretas.
+ */
 public class Jogo {
     private Tabuleiro tabuleiro;
     private ExibirTabuleiro exibirTabuleiro;
@@ -24,7 +29,7 @@ public class Jogo {
         this.scanner = new Scanner(System.in);
     }
 
-     /* Inicia uma nova partida.*/
+    /*Inicia uma nova partida. */
     public void iniciar() {
         posicionarPecas();
         while (!jogoTerminou()) {
@@ -34,9 +39,8 @@ public class Jogo {
         System.out.println("FIM DE JOGO!");
     }
 
-    /* Posiciona as peças no tabuleiro.*/
+    /*Posiciona as peças no tabuleiro conforme a configuração inicial do jogo. */
     private void posicionarPecas() {
-
         // Pretas
         tabuleiro.colocarPeca(new Soldado(CorPeca.PRETO), 0, 1);
         tabuleiro.colocarPeca(new Cavaleiro(CorPeca.PRETO), 0, 3);
@@ -70,7 +74,7 @@ public class Jogo {
         tabuleiro.colocarPeca(new Soldado(CorPeca.BRANCO), 7, 6);
     }
 
-    /*Executa um turno.*/
+    /*Executa um turno, coletando a entrada do usuário e chamando o método mover. */
     private void realizarTurno() {
         System.out.println();
         System.out.println("Turno: " + turnoAtual);
@@ -95,7 +99,7 @@ public class Jogo {
         }
     }
 
-    /*Move ou realiza captura de uma peça.*/
+    /*Move ou realiza captura de uma peça. Aplica GRASP Polymorphism ao delegar a validação para a própria peça. */
     public boolean mover(int origemLinha, int origemColuna, int destinoLinha, int destinoColuna) {
         Peca peca = selecionarPeca(origemLinha, origemColuna);
         if (peca == null) {
@@ -131,8 +135,7 @@ public class Jogo {
         return true;
     }
 
-
-    /*Alterna o turno.*/
+    /*Alterna o turno entre Branco e Preto. */
     private void trocarTurno() {
         if (turnoAtual == CorPeca.BRANCO) {
             turnoAtual = CorPeca.PRETO;
@@ -141,16 +144,12 @@ public class Jogo {
         }
     }
 
-    /**
-     * Retorna a peça da posição informada.
-     */
+    /*Retorna a peça da posição informada. */
     public Peca selecionarPeca(int linha, int coluna) {
         return tabuleiro.getPeca(linha, coluna);
     }
 
-    /**
-     * Promove Soldado para Soldado Real.
-     */
+    /*Promove um Soldado para Soldado Real quando atinge a linha final adversária. */
     private void promoverSoldado(int linha, int coluna) {
         Peca peca = tabuleiro.getPeca(linha, coluna);
         if (peca == null) {
@@ -170,7 +169,7 @@ public class Jogo {
         }
     }
 
-    /*Verifica se ainda existem peças da cor informada.*/
+    /*Verifica se ainda existem peças da cor informada no tabuleiro. */
     private boolean possuiPecas(CorPeca cor) {
         for (int linha = 0; linha < 8; linha++) {
             for (int coluna = 0; coluna < 8; coluna++) {
@@ -183,6 +182,7 @@ public class Jogo {
         return false;
     }
 
+    /*Verifica a condição de afogamento (se o jogador atual não tem movimentos válidos). */
     private boolean temMovimentosValidos(CorPeca cor) {
         for (int linha = 0; linha < 8; linha++) {
             for (int coluna = 0; coluna < 8; coluna++) {
@@ -203,7 +203,7 @@ public class Jogo {
         return false;
     }
 
-    /*Verifica se o jogo terminou.*/
+    /*Verifica as condições de vitória (eliminação de todas as peças adversárias ou afogamento). */
     public boolean jogoTerminou() {
         if (!possuiPecas(CorPeca.BRANCO)) {
             System.out.println("\n🏆 Reino Preto venceu!");

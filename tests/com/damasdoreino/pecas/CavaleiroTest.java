@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import com.damasdoreino.enums.CorPeca;
 import com.damasdoreino.jogo.Tabuleiro;
 
+/*
+ * Testes unitários para a peça Cavaleiro.
+ * Valida o padrão GRASP Polimorfismo e o movimento/captura específicos do Cavaleiro.
+ */
 public class CavaleiroTest {
 
     private Tabuleiro tabuleiro;
@@ -22,7 +26,7 @@ public class CavaleiroTest {
     @Test
     public void movimentoDeveSerValidoFormatoL() {
         tabuleiro.colocarPeca(cavaleiro, 4, 4);
-        // 2 para cima, 1 para direita
+        // Valida o movimento em L (2 para cima, 1 para direita)
         assertTrue(cavaleiro.movimentoValido(tabuleiro, 4, 4, 2, 5));
     }
 
@@ -30,7 +34,7 @@ public class CavaleiroTest {
     public void capturaDeveSerValidaQuandoDestinoContemInimigo() {
         tabuleiro.colocarPeca(cavaleiro, 4, 4);
         tabuleiro.colocarPeca(new Soldado(CorPeca.PRETO), 2, 5);
-        // Captura no destino, não precisa saltar
+        // Valida a captura por ocupação (não precisa saltar, apenas ocupar o destino com inimigo)
         assertTrue(cavaleiro.capturaValida(tabuleiro, 4, 4, 2, 5));
     }
 
@@ -41,8 +45,8 @@ public class CavaleiroTest {
         
         cavaleiro.executarCaptura(tabuleiro, 4, 4, 2, 5);
         
-        assertTrue(tabuleiro.casaEstaVazia(4, 4)); // Origem vazia
-        assertTrue(tabuleiro.casaEstaVazia(2, 5) == false); // Destino tem peça (o cavaleiro)
+        // Valida que a peça inimiga foi removida e o cavaleiro ocupou o destino
+        assertTrue(tabuleiro.casaEstaVazia(4, 4)); 
         assertEquals(cavaleiro, tabuleiro.getPeca(2, 5));
     }
 }

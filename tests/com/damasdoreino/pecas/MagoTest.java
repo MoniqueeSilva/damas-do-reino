@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import com.damasdoreino.enums.CorPeca;
 import com.damasdoreino.jogo.Tabuleiro;
 
+/*
+ * Testes unitários para a peça Mago.
+ * Valida a regra de captura à distância e o movimento diagonal livre.
+ */
 public class MagoTest {
 
     private Tabuleiro tabuleiro;
@@ -22,6 +26,7 @@ public class MagoTest {
     @Test
     public void movimentoDeveSerValidoDiagonalCaminhoLivre() {
         tabuleiro.colocarPeca(mago, 7, 0);
+        // Valida o movimento diagonal
         assertTrue(mago.movimentoValido(tabuleiro, 7, 0, 4, 3));
     }
 
@@ -29,7 +34,7 @@ public class MagoTest {
     public void capturaDeveSerValidaQuandoUmInimigoNoCaminho() {
         tabuleiro.colocarPeca(mago, 7, 0);
         tabuleiro.colocarPeca(new Soldado(CorPeca.PRETO), 5, 2);
-        // Destino vazio e apenas um inimigo no caminho
+        // Valida a captura à distância: destino vazio e exatamente um inimigo no caminho
         assertTrue(mago.capturaValida(tabuleiro, 7, 0, 3, 4));
     }
 
@@ -40,7 +45,8 @@ public class MagoTest {
         
         mago.executarCaptura(tabuleiro, 7, 0, 3, 4);
         
-        assertTrue(tabuleiro.casaEstaVazia(5, 2)); // Inimigo removido
-        assertEquals(mago, tabuleiro.getPeca(7, 0)); // Mago permanece na origem
+        // Valida que o inimigo foi removido do caminho e o mago permaneceu na origem
+        assertTrue(tabuleiro.casaEstaVazia(5, 2)); 
+        assertEquals(mago, tabuleiro.getPeca(7, 0)); 
     }
 }

@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import com.damasdoreino.enums.CorPeca;
 import com.damasdoreino.jogo.Tabuleiro;
 
+/*
+ * Testes unitários para o Soldado comum.
+ * Valida as regras da peça base: movimento para frente e captura por salto.
+ */
 public class SoldadoTest {
 
     private Tabuleiro tabuleiro;
@@ -22,14 +26,14 @@ public class SoldadoTest {
     @Test
     public void movimentoDeveSerValidoQuandoDiagonalFrenteVazia() {
         tabuleiro.colocarPeca(soldadoBranco, 5, 4);
-        // Branco anda para cima (linha diminui)
+        // Valida o movimento para cima, 1 casa diagonal, destino vazio
         assertTrue(soldadoBranco.movimentoValido(tabuleiro, 5, 4, 4, 5));
     }
 
     @Test
     public void movimentoDeveSerInvalidoQuandoDiagonalTras() {
         tabuleiro.colocarPeca(soldadoBranco, 5, 4);
-        // Branco não pode andar para trás
+        // Valida que o soldado não pode andar para trás
         assertFalse(soldadoBranco.movimentoValido(tabuleiro, 5, 4, 6, 5));
     }
 
@@ -37,7 +41,7 @@ public class SoldadoTest {
     public void capturaDeveSerValidaQuandoInimigoAdjacenteEDestinoVazio() {
         tabuleiro.colocarPeca(soldadoBranco, 5, 4);
         tabuleiro.colocarPeca(new Soldado(CorPeca.PRETO), 4, 5);
-        // Destino deve estar vazio para cair
+        // Valida o salto de 2 casas com uma peça inimiga no meio e destino vazio
         assertTrue(soldadoBranco.capturaValida(tabuleiro, 5, 4, 3, 6));
     }
 
@@ -45,14 +49,12 @@ public class SoldadoTest {
     public void executarCapturaDeveRemoverInimigoEMoverPeca() {
         tabuleiro.colocarPeca(soldadoBranco, 5, 4);
         tabuleiro.colocarPeca(new Soldado(CorPeca.PRETO), 4, 5);
-        
-        assertTrue(tabuleiro.getPeca(4, 5) != null); // Tem inimigo
-        assertTrue(tabuleiro.casaEstaVazia(3, 6)); // Destino vazio
 
         soldadoBranco.executarCaptura(tabuleiro, 5, 4, 3, 6);
 
-        assertTrue(tabuleiro.casaEstaVazia(5, 4)); // Origem vazia
-        assertTrue(tabuleiro.casaEstaVazia(4, 5)); // Inimigo removido
-        assertEquals(soldadoBranco, tabuleiro.getPeca(3, 6)); // Peça no destino
+        // Valida a execução: origem vazia, inimigo removido do meio, peça no destino
+        assertTrue(tabuleiro.casaEstaVazia(5, 4)); 
+        assertTrue(tabuleiro.casaEstaVazia(4, 5)); 
+        assertEquals(soldadoBranco, tabuleiro.getPeca(3, 6)); 
     }
 }

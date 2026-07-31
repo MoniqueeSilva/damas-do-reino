@@ -7,24 +7,23 @@ import com.damasdoreino.enums.CorPeca;
 import com.damasdoreino.enums.TipoPeca;
 import com.damasdoreino.pecas.*;
 
+/*
+ * Testes de integração e regras de negócio do Jogo.
+ * Valida a promoção de peças, condições de vitória por eliminação e afogamento.
+ */
 public class JogoTest {
 
     @Test
     public void promocaoDeveOcorrerQuandoSoldadoAtingeFilaFinal() {
-        // 1. Criar um jogo e um tabuleiro controlado
+        // Cria um cenário controlado para forçar a promoção do Soldado para SoldadoReal
         Jogo jogo = new Jogo();
         Tabuleiro tabuleiro = jogo.getTabuleiro();
         Soldado soldado = new Soldado(CorPeca.BRANCO);
         
-        // 2. Posicionar o soldado na penúltima linha e fazer ele ir para a última (linha 0)
+        // Posiciona o soldado na penúltima linha (1,3) para movê-lo à última linha (0,4)
         tabuleiro.colocarPeca(soldado, 1, 3);
         
-        // 3. Simular a jogada de promoção. No Jogo, isso acontece no método mover.
-        // O método mover valida e chama promoverSoldado.
-        // Vamos usar o próprio método público 'mover' do Jogo
-        // Origem: (1,3), Destino: (0,4)
-        
-        // Forçamos o turno para branco, pois o jogo começa em branco mas podemos garantir
+        // Simula a jogada e verifica se a promoção ocorreu (polimorfismo na criação da peça)
         boolean moveu = jogo.mover(1, 3, 0, 4);
         
         assertTrue(moveu);
@@ -39,10 +38,10 @@ public class JogoTest {
         Jogo jogo = new Jogo();
         Tabuleiro tabuleiro = jogo.getTabuleiro();
         
-        // Posiciona apenas peças do jogador atual (Branco), sem peças pretas
+        // Simula a eliminação de todas as peças do adversário
         tabuleiro.colocarPeca(new Soldado(CorPeca.BRANCO), 5, 4);
         
-        // Verifica se o jogo terminou (Não tem peças pretas)
+        // Valida que o jogo identificou a vitória por falta de peças inimigas
         assertTrue(jogo.jogoTerminou());
     }
 
@@ -51,16 +50,14 @@ public class JogoTest {
         Jogo jogo = new Jogo();
         Tabuleiro tabuleiro = jogo.getTabuleiro();
 
-        // 1. Limpa o tabuleiro para trabalhar com um cenário 100% controlado
+        // Limpa o tabuleiro para criar um cenário de afogamento (sem movimentos válidos)
         tabuleiro.limparTabuleiro();
 
-        // 2. Coloca um único Soldado Branco no canto superior esquerdo (linha 0, coluna 0).
-        // Regra do soldado: Anda apenas para frente na diagonal. Saindo de (0,0), qualquer 
-        // movimento (seja ele normal ou captura) cairia fora do tabuleiro (linha -1).
-        // Portanto, ele está PERFEITAMENTE imóvel.
+        // Posiciona um Soldado Branco no canto (0,0). Qualquer tentativa de movimento ou captura
+        // cairia fora do tabuleiro (linha -1), configurando o afogamento.
         tabuleiro.colocarPeca(new Soldado(CorPeca.BRANCO), 0, 0);
 
-        // 3. O turno atual é Branco, ele não tem movimento algum. Afogamento identificado!
+        // Valida que o jogo identificou a condição de afogamento
         assertTrue(jogo.jogoTerminou());
     }
 }
