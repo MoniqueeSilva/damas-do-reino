@@ -2,26 +2,20 @@ package com.damasdoreino.pecas;
 
 import com.damasdoreino.enums.CorPeca;
 import com.damasdoreino.enums.TipoPeca;
-import com.damasdoreino.jogo.Tabuleiro;
 
-public class SoldadoReal extends Peca {
+/*
+ * Implementação da peça SoldadoReal (promovida).
+ * SOLID: Aplicação do Princípio de Substituição de Liskov (LSP).
+ * Herda de Soldado para reaproveitar a lógica de movimento, alterando apenas a direção.
+ */
+public class SoldadoReal extends Soldado {
 
     public SoldadoReal(CorPeca cor) {
         super(cor, TipoPeca.SOLDADO_REAL);
     }
 
-    public boolean movimentoValido(
-            Tabuleiro tabuleiro,
-            int origemLinha,
-            int origemColuna,
-            int destinoLinha,
-            int destinoColuna) {
-
-        int deltaLinha = Math.abs(destinoLinha - origemLinha);
-        int deltaColuna = Math.abs(destinoColuna - origemColuna);
-
-        //Soldado Real movimenta uma casa na diagonal em qualquer direção;
-        return deltaLinha == 1 && deltaColuna == 1;
+    /*Sobrescrita do método herdado para permitir movimento em ambas as direções. */
+    protected boolean isDirecaoValida(int deltaLinha) {
+        return true; 
     }
-
 }

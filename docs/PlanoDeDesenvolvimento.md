@@ -30,7 +30,7 @@ Júlio:
 
 - [x] Classe abstrata Peca
 - [x] Soldado
-- [ ] SoldadoReal
+- [x] SoldadoReal
 - [x] Cavaleiro
 - [x] Mago
 
@@ -42,25 +42,25 @@ Monique:
 
 - [x] Casa
 - [x] Tabuleiro
-- [ ] Impressão no console
+- [x] Impressão no console
 
 ## Etapa 5 - Jogador
 
 Responsável
 Júlio:
 
-- [ ] Jogador
+- [x] Jogador
 
 ## Etapa 6 - Jogo
 
 Responsável
 Monique:
 
-- [ ] Jogo
+- [x] Jogo
 
 ## Etapa final - Criar Testes
 
 Responsável
 Júlio:
 
-- [ ] Testes
+- [x] Testes

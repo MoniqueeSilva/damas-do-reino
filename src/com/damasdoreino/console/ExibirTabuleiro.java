@@ -5,8 +5,14 @@ import com.damasdoreino.jogo.Casa;
 import com.damasdoreino.jogo.Tabuleiro;
 import com.damasdoreino.pecas.Peca;
 
+/*
+ * Responsável pela renderização visual do tabuleiro no console.
+ * GRASP: Invenção Pura e Indireção (desacopla a apresentação da lógica do jogo).
+ * SOLID: SRP - única responsabilidade: exibir o tabuleiro.
+ */
 public class ExibirTabuleiro {
 
+    /*Percorre o tabuleiro e imprime cada casa com o respectivo ícone. */
     public void imprimir(Tabuleiro tabuleiro) {
 
         System.out.println();
@@ -45,6 +51,7 @@ public class ExibirTabuleiro {
         System.out.println();
     }
 
+   /*Traduz o tipo e a cor da peça para um emoji correspondente na interface. */
    private String obterEmoji(Peca peca) {
     switch (peca.getTipo()) {
         case SOLDADO:
