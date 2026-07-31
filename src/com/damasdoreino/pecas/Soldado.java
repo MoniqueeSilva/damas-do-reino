@@ -4,28 +4,32 @@ import com.damasdoreino.enums.CorPeca;
 import com.damasdoreino.enums.TipoPeca;
 import com.damasdoreino.jogo.Tabuleiro;
 
+/*
+ * Implementação da peça Soldado.
+ * GRASP: Polimorfismo (sobrescreve métodos da classe base).
+ * SOLID: LSP (pode ser substituído por SoldadoReal sem quebrar o jogo).
+ */
 public class Soldado extends Peca {
 
-    // Construtor público padrão
+    /*Construtor padrão para o Soldado comum. */
     public Soldado(CorPeca cor) {
         this(cor, TipoPeca.SOLDADO);
     }
 
-    // Construtor protegido para ser usado pelas subclasses (como SoldadoReal)
+    /*Construtor protegido para ser usado por subclasse SoldadoReal. */
     protected Soldado(CorPeca cor, TipoPeca tipo) {
         super(cor, tipo);
     }
 
-    // Método que define a direção válida. No Soldado, é apenas para frente
+    /*Valida se o movimento está indo na direção permitida (apenas para frente). */
     protected boolean isDirecaoValida(int deltaLinha) {
         if (getCor() == CorPeca.BRANCO) {
-            return deltaLinha == -1;
+            return deltaLinha < 0;
         }
-        return deltaLinha == 1;
+        return deltaLinha > 0;     
     }
 
-    @Override
-    public boolean movimentoValido(
+   public boolean movimentoValido(
             Tabuleiro tabuleiro,
             int origemLinha,
             int origemColuna,
@@ -35,14 +39,13 @@ public class Soldado extends Peca {
         int deltaLinha = destinoLinha - origemLinha;
         int deltaColuna = Math.abs(destinoColuna - origemColuna);
 
-        // Soldado anda apenas uma casa na diagonal, o destino deve estar vazio e a direção deve ser válida
+        // Valida andar 1 casa na diagonal, destino vazio e direção correta.
         return deltaColuna == 1 
             && Math.abs(deltaLinha) == 1 
             && tabuleiro.casaEstaVazia(destinoLinha, destinoColuna) 
             && isDirecaoValida(deltaLinha);
     }
 
-    @Override
     public boolean capturaValida(
             Tabuleiro tabuleiro,
             int origemLinha,
@@ -53,11 +56,9 @@ public class Soldado extends Peca {
         int deltaLinha = destinoLinha - origemLinha;
         int deltaColuna = Math.abs(destinoColuna - origemColuna);
 
-        // O salto é de exatamente 2 casas na diagonal
+        // Valida salto de 2 casas, destino vazio e direção correta.
         if (deltaColuna != 2 || Math.abs(deltaLinha) != 2) return false;
-        // O destino deve estar vazio para pousar
         if (!tabuleiro.casaEstaVazia(destinoLinha, destinoColuna)) return false;
-        // A direção do salto deve ser válida
         if (!isDirecaoValida(deltaLinha)) return false;
 
         int linhaMeio = (origemLinha + destinoLinha) / 2;
@@ -67,8 +68,7 @@ public class Soldado extends Peca {
         return inimigo != null && inimigo.getCor() != getCor();
     }
 
-    @Override
-    public void executarCaptura(
+   public void executarCaptura(
             Tabuleiro tabuleiro,
             int origemLinha,
             int origemColuna,
